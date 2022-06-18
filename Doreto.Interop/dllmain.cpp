@@ -1,15 +1,8 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
-#include <WinSock2.h>
 #include "detours.h"
-#include <cstdio>
-#include <string>
-#include <iostream>
-#include <stdio.h>
-#include <strsafe.h>
 #include "utils.h"
 #include <ws2tcpip.h>
-#include <algorithm>
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "handlefinder.h"
