@@ -7,6 +7,9 @@
 #ifndef PCH_H
 #define PCH_H
 
+#define _CRT_SECURE_NO_WARNINGS 1
+#define _WINSOCK_DEPRECATED_NO_WARNINGS
+
 // ajouter les en-têtes à précompiler ici
 #include "framework.h"
 
