@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Doreto.Shared.Wpf.Controls.YouHaveNoCharacters"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="145"
+    d:DesignWidth="320"
+    mc:Ignorable="d">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock
+            Margin="15,15,15,0"
+            VerticalAlignment="Center"
+            TextWrapping="Wrap"><Run Text="Hmm.. on dirait que tu n'as encore aucun personnage" /><Run Text=". Connecte-toi et il apparaîtra ici !" /></TextBlock>
+
+    </StackPanel>
+</UserControl>

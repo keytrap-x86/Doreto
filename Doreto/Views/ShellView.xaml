@@ -1,0 +1,220 @@
+﻿<k:Window
+    x:Class="Doreto.Views.ShellView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:bh="clr-namespace:Doreto.Shared.Wpf.Behaviors;assembly=Doreto.Shared.Wpf"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+    xmlns:k="clr-namespace:Otto.Theme.Controls;assembly=Otto.Theme"
+    xmlns:kt="clr-namespace:Otto.Theme.Controls;assembly=Otto.Theme"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:viewmodels="clr-namespace:Doreto.ViewModels"
+    xmlns:xf="clr-namespace:XamlFlair;assembly=XamlFlair.WPF"
+    Width="379"
+    Height="450"
+    d:DataContext="{d:DesignInstance Type=viewmodels:ShellViewModel}"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    FontFamily="{StaticResource Whitney}"
+    FontSize="15"
+    mc:Ignorable="d">
+    <k:Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/XamlFlair.WPF;component/DefaultAnimations.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </k:Window.Resources>
+    <k:Window.NonClientAreaContent>
+        <StackPanel
+            Margin="0,5"
+            IsHitTestVisible="False"
+            Orientation="Horizontal">
+            <Image
+                MaxWidth="18"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                RenderTransformOrigin="0.5,0.5"
+                Source="/Assets/logo@32px.png"
+                Stretch="UniformToFill" />
+            <TextBlock
+                VerticalAlignment="Bottom"
+                FontSize="16"
+                FontWeight="DemiBold"
+                Foreground="{StaticResource SecondaryTextBrush}"
+                Text="oreto" />
+        </StackPanel>
+
+    </k:Window.NonClientAreaContent>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Everything is wrapped in a scrollviewer  -->
+        <ScrollViewer
+            Grid.Row="0"
+            MaxWidth="480"
+            Margin="5"
+            bh:ScrollViewerBehavior.FixScrolling="True"
+            VerticalScrollBarVisibility="Auto">
+            <ScrollViewer.Style>
+                <Style TargetType="ScrollViewer">
+                    <Setter Property="Opacity" Value="1" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsDialogShown}" Value="True">
+                            <Setter Property="Opacity" Value="0.1" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ScrollViewer.Style>
+
+            <!--  Container StackPanel  -->
+            <StackPanel>
+
+                <!--  StackPanel for the top buttons  -->
+                <StackPanel Margin="15,0,15,0">
+                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <WrapPanel.Resources>
+                            <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                                <Setter Property="Margin" Value="2" />
+                            </Style>
+                        </WrapPanel.Resources>
+                        <Button
+                            x:Name="BtnDiscord"
+                            kt:PopupService.Pop="Un problème, une question ? Viens me rendre visite !"
+                            kt:PopupService.PopBackgroundBrush="#7289DA"
+                            Command="{Binding ShowDialog}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image
+                                    Height="18"
+                                    Margin="0,0,8,0"
+                                    Source="/Doreto;component/Assets/discord.png" />
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Foreground="#7289DA"
+                                    Text="Discord" />
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="BtnShowAccountManagerView" Content="Gestion des persos" />
+                        <Button x:Name="BtnShowSettingsView" Content="Options" />
+                    </WrapPanel>
+
+                    <!--  Website  -->
+                    <StackPanel
+                        Margin="3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Cursor="Hand"
+                            Foreground="White"
+                            Text="KeyTrap.fr"
+                            TextDecorations="Underline" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Margin="10">
+                    <!--  Text separator (Follower)  -->
+                    <kt:TextSeparator>
+                        <kt:TextSeparator.Header>
+                            <emoji:TextBlock Text="SUIVI DES PERSONNAGES 🦸‍♂️🧚‍♀️🧝‍♂️🦹‍♂️" />
+                        </kt:TextSeparator.Header>
+                    </kt:TextSeparator>
+                    
+                    <!--  Instructions for adding a character when there's no characters  -->
+                    <Border
+                        x:Name="Border"
+                        Grid.Row="0"
+                        Margin="0,15,0,0"
+                        Background="{DynamicResource ControlDisabledBackgroundBrush}"
+                        BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                        BorderThickness="2"
+                        CornerRadius="3"
+                        Opacity="0">
+                        <Border.Resources>
+                            <Storyboard x:Key="Expand">
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="(bh:AnimatedDoubleBehavior.AnimatedHeight)"
+                                    To="140"
+                                    Duration="0:0:0.4" />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="0:0:0.4" />
+                            </Storyboard>
+                            <Storyboard x:Key="Collapse">
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="(bh:AnimatedDoubleBehavior.AnimatedHeight)"
+                                    To="0"
+                                    Duration="0:0:0.4" />
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="1"
+                                    To="0"
+                                    Duration="0:0:0.4" />
+                            </Storyboard>
+                        </Border.Resources>
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsDialogShown}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard Storyboard="{StaticResource Expand}" />
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <BeginStoryboard Storyboard="{StaticResource Collapse}" />
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Border.Child>
+                            <ContentControl>
+                                <ContentControl.Content>
+                                    <ContentPresenter
+                                        x:Name="ContentPresenter"
+                                        xf:Animations.Primary="{xf:Animate BasedOn={StaticResource FadeInAndGrow},
+                                                                           Event=DataContextChanged,
+                                                                           Delay=600}"
+                                        Content="{Binding InfoSpace}" />
+                                </ContentControl.Content>
+                            </ContentControl>
+                        </Border.Child>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!--  Modal dialog overlay  -->
+        <Border
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            d:Visibility="Hidden"
+            xf:Animations.Primary="{xf:Animate BasedOn={StaticResource FadeIn},
+                                               Event=Visibility,
+                                               Delay=0,
+                                               Duration=800}"
+            Background="#66000000"
+            Visibility="{Binding IsDialogShown, Converter={StaticResource Boolean2VisibilityConverter}}">
+            <Border
+                Grid.Row="0"
+                Margin="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="{DynamicResource ControlDisabledBackgroundBrush}"
+                BorderBrush="{DynamicResource ControlBackgroundBrush}"
+                BorderThickness="2"
+                CornerRadius="3">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        TextWrapping="Wrap"><Run Text="Hmm.. on dirait que tu n'as encore aucun personnage" /><Run Text=". Connecte-toi et il apparaîtra ici !" /></TextBlock>
+                </StackPanel>
+            </Border>
+        </Border>
+    </Grid>
+</k:Window>

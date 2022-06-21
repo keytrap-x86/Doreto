@@ -116,7 +116,7 @@ DWORD WINAPI RunPipeServer(LPVOID lpModule)
 	char pipeName[256] = "\\\\.\\pipe\\doreto_";
 	strcat_s(pipeName, 256, std::to_string(curr_proc_id).c_str());
 
-	// Starting pipe server
+	// Start the pipe server
 	while (g_PipeServer == NULL || g_PipeServer == INVALID_HANDLE_VALUE)
 	{
 		// Create a pipe to send data
