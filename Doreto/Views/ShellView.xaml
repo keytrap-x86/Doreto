@@ -17,6 +17,8 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     FontFamily="{StaticResource Whitney}"
     FontSize="15"
+    ResizeMode="CanMinimize"
+    Style="{StaticResource WindowWin10}"
     mc:Ignorable="d">
     <k:Window.Resources>
         <ResourceDictionary>
@@ -84,7 +86,7 @@
                         <Button
                             x:Name="BtnDiscord"
                             kt:PopupService.Pop="Un problème, une question ? Viens me rendre visite !"
-                            kt:PopupService.PopBackgroundBrush="#7289DA"
+                            kt:PopupService.PopBackgroundBrush="#5866EF"
                             Command="{Binding ShowDialog}">
                             <StackPanel Orientation="Horizontal">
                                 <Image
@@ -93,7 +95,7 @@
                                     Source="/Doreto;component/Assets/discord.png" />
                                 <TextBlock
                                     FontWeight="Bold"
-                                    Foreground="#7289DA"
+                                    Foreground="#5866EF"
                                     Text="Discord" />
                             </StackPanel>
                         </Button>
@@ -106,11 +108,10 @@
                         Margin="3"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
-                        <TextBlock
+                        <emoji:TextBlock
                             Cursor="Hand"
                             Foreground="White"
-                            Text="KeyTrap.fr"
-                            TextDecorations="Underline" />
+                            Text="🌐 keytrap.fr" />
                     </StackPanel>
                 </StackPanel>
 
@@ -121,70 +122,9 @@
                             <emoji:TextBlock Text="SUIVI DES PERSONNAGES 🦸‍♂️🧚‍♀️🧝‍♂️🦹‍♂️" />
                         </kt:TextSeparator.Header>
                     </kt:TextSeparator>
-                    
+
                     <!--  Instructions for adding a character when there's no characters  -->
-                    <Border
-                        x:Name="Border"
-                        Grid.Row="0"
-                        Margin="0,15,0,0"
-                        Background="{DynamicResource ControlDisabledBackgroundBrush}"
-                        BorderBrush="{DynamicResource ControlBackgroundBrush}"
-                        BorderThickness="2"
-                        CornerRadius="3"
-                        Opacity="0">
-                        <Border.Resources>
-                            <Storyboard x:Key="Expand">
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="(bh:AnimatedDoubleBehavior.AnimatedHeight)"
-                                    To="140"
-                                    Duration="0:0:0.4" />
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="Opacity"
-                                    From="0"
-                                    To="1"
-                                    Duration="0:0:0.4" />
-                            </Storyboard>
-                            <Storyboard x:Key="Collapse">
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="(bh:AnimatedDoubleBehavior.AnimatedHeight)"
-                                    To="0"
-                                    Duration="0:0:0.4" />
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="Opacity"
-                                    From="1"
-                                    To="0"
-                                    Duration="0:0:0.4" />
-                            </Storyboard>
-                        </Border.Resources>
-                        <Border.Style>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsDialogShown}" Value="False">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                        <DataTrigger.EnterActions>
-                                            <BeginStoryboard Storyboard="{StaticResource Expand}" />
-                                        </DataTrigger.EnterActions>
-                                        <DataTrigger.ExitActions>
-                                            <BeginStoryboard Storyboard="{StaticResource Collapse}" />
-                                        </DataTrigger.ExitActions>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <Border.Child>
-                            <ContentControl>
-                                <ContentControl.Content>
-                                    <ContentPresenter
-                                        x:Name="ContentPresenter"
-                                        xf:Animations.Primary="{xf:Animate BasedOn={StaticResource FadeInAndGrow},
-                                                                           Event=DataContextChanged,
-                                                                           Delay=600}"
-                                        Content="{Binding InfoSpace}" />
-                                </ContentControl.Content>
-                            </ContentControl>
-                        </Border.Child>
-                    </Border>
+                    <ContentControl prism:RegionManager.RegionName="InfosRegion" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
@@ -194,27 +134,11 @@
             Grid.Row="0"
             Grid.RowSpan="2"
             d:Visibility="Hidden"
-            xf:Animations.Primary="{xf:Animate BasedOn={StaticResource FadeIn},
-                                               Event=Visibility,
-                                               Delay=0,
-                                               Duration=800}"
+            xf:Animations.Primary="{xf:Animate BasedOn={StaticResource FadeInAndGrow},
+                                               Event=Visibility, Duration=200}"
             Background="#66000000"
             Visibility="{Binding IsDialogShown, Converter={StaticResource Boolean2VisibilityConverter}}">
-            <Border
-                Grid.Row="0"
-                Margin="20"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Background="{DynamicResource ControlDisabledBackgroundBrush}"
-                BorderBrush="{DynamicResource ControlBackgroundBrush}"
-                BorderThickness="2"
-                CornerRadius="3">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        TextWrapping="Wrap"><Run Text="Hmm.. on dirait que tu n'as encore aucun personnage" /><Run Text=". Connecte-toi et il apparaîtra ici !" /></TextBlock>
-                </StackPanel>
-            </Border>
+            <ContentControl prism:RegionManager.RegionName="OverlayDialog" />
         </Border>
     </Grid>
 </k:Window>

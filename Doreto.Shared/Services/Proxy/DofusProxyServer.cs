@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 
 using Doreto.Shared.Models.Proxy;
 
+using Microsoft.Extensions.Logging;
+
 using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.Models;
 
@@ -13,18 +15,23 @@ public class DofusProxyServer
 {
     public event EventHandler<AutoLoginInfo> NewAutoLoginInfoReceived;
     private readonly ProxyServer _proxyServer;
-    public DofusProxyServer()
-    {
-        _proxyServer = new ProxyServer();
-        
-        _proxyServer.CertificateManager.LoadRootCertificate("test.pfx", "$B00merHasIt$", true, X509KeyStorageFlags.DefaultKeySet);
-        _proxyServer.BeforeRequest += DofusProxyServer_BeforeRequest;
+    private readonly ILogger<DofusProxyServer> _logger;
 
+    public DofusProxyServer(ILogger<DofusProxyServer> logger)
+    {
+        _logger = logger;
+        _proxyServer = new ProxyServer();
 
     }
 
     public void Start()
     {
+        _logger.LogDebug("Starting proxy server");
+
+        _proxyServer.CertificateManager.LoadRootCertificate(Path.Combine(AppContext.BaseDirectory, "proxy.pfx"),
+            "*", false, X509KeyStorageFlags.EphemeralKeySet);
+        _proxyServer.BeforeRequest += DofusProxyServer_BeforeRequest;
+
         _proxyServer.Start();
         var ep = new ExplicitProxyEndPoint(IPAddress.Any, 8851, true);
         ep.BeforeTunnelConnectRequest += Ep_BeforeTunnelConnectRequest;
@@ -48,6 +55,7 @@ public class DofusProxyServer
     {
         _proxyServer.Stop();
         _proxyServer.Dispose();
+        _logger.LogDebug("Stopped and disposed proxy server");
     }
 
     private Task DofusProxyServer_BeforeRequest(object sender, Titanium.Web.Proxy.EventArguments.SessionEventArgs e)

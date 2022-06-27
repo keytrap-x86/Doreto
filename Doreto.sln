@@ -25,9 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{D473
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{886761A3-EAB9-42A4-9C0F-C74B747BB1B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doreto.Shared", "Doreto.Shared\Doreto.Shared.csproj", "{15CE70EE-B3D6-445E-868B-8F3A91EB0CDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doreto.Shared", "Doreto.Shared\Doreto.Shared.csproj", "{15CE70EE-B3D6-445E-868B-8F3A91EB0CDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doreto.Shared.Wpf", "Doreto.Shared.Wpf\Doreto.Shared.Wpf.csproj", "{ABFA4860-03D3-4AA1-B879-11627ADE06B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doreto.Shared.Wpf", "Doreto.Shared.Wpf\Doreto.Shared.Wpf.csproj", "{ABFA4860-03D3-4AA1-B879-11627ADE06B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterNewCharacterModule", "RegisterNewCharacterModule\RegisterNewCharacterModule.csproj", "{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,18 @@ Global
 		{ABFA4860-03D3-4AA1-B879-11627ADE06B0}.Release|x64.Build.0 = Release|Any CPU
 		{ABFA4860-03D3-4AA1-B879-11627ADE06B0}.Release|x86.ActiveCfg = Release|Any CPU
 		{ABFA4860-03D3-4AA1-B879-11627ADE06B0}.Release|x86.Build.0 = Release|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Debug|x64.Build.0 = Debug|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Debug|x86.Build.0 = Debug|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Release|x64.ActiveCfg = Release|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Release|x64.Build.0 = Release|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +125,7 @@ Global
 		{886761A3-EAB9-42A4-9C0F-C74B747BB1B7} = {B2B68327-D368-4EB2-98FC-805DECD768BD}
 		{15CE70EE-B3D6-445E-868B-8F3A91EB0CDC} = {886761A3-EAB9-42A4-9C0F-C74B747BB1B7}
 		{ABFA4860-03D3-4AA1-B879-11627ADE06B0} = {886761A3-EAB9-42A4-9C0F-C74B747BB1B7}
+		{6D6EFDA6-EC07-47B1-9769-FE2A3D74F6AA} = {D4731812-371F-4472-8F90-C2B24F326393}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {72E514EE-C18B-41CC-886C-9C8B41A576DD}

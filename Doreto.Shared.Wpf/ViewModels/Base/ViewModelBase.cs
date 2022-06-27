@@ -1,10 +1,10 @@
 ﻿
-using System;
-
 using Prism.Mvvm;
 using Prism.Regions;
 
-namespace Doreto.ViewModels.Base;
+using System;
+
+namespace Doreto.Shared.Wpf.ViewModels.Base;
 
 /// <summary>
 ///     Base class for all view models.

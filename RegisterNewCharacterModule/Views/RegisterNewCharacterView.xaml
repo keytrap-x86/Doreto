@@ -1,0 +1,73 @@
+﻿<UserControl
+    x:Class="RegisterNewCharacterModule.Views.RegisterNewCharacterView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:viewmodels="clr-namespace:RegisterNewCharacterModule.ViewModels"
+    xmlns:xf="clr-namespace:XamlFlair;assembly=XamlFlair.WPF"
+    d:DataContext="{d:DesignInstance Type=viewmodels:RegisterNewCharacterViewModel}"
+    d:DesignHeight="140"
+    d:DesignWidth="350"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/XamlFlair.WPF;component/DefaultAnimations.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid xf:Animations.Primary="{xf:Animate BasedOn={StaticResource FadeInAndContract}, Duration=500}">
+        <Border
+            Background="{DynamicResource ControlDisabledBackgroundBrush}"
+            BorderBrush="{DynamicResource ControlDisabledBorderBrush}"
+            BorderThickness="2"
+            CornerRadius="3">
+            <Grid Margin="10">
+                <Grid.Resources>
+                    <Style TargetType="emoji:TextBlock">
+                        <Setter Property="Margin" Value="0,5" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+                <Button
+                    Grid.Row="0"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Command="{Binding StartRegisteringCharacter}">
+                    <emoji:TextBlock
+                        VerticalAlignment="Center"
+                        Foreground="{StaticResource SuccessBrush}"
+                        Text="Démarrer l'enregistrement d'un perso ⌛" />
+                </Button>
+
+                <emoji:TextBlock
+                    Grid.Row="1"
+                    VerticalAlignment="Center"
+                    Text="🕹️ Lancement de Dofus via le launcher..."
+                    TextWrapping="Wrap" />
+                <emoji:TextBlock
+                    Grid.Row="2"
+                    VerticalAlignment="Center"
+                    Text="⚡ Connecte-toi à ton perso"
+                    TextWrapping="Wrap"
+                    Visibility="Collapsed" />
+                <emoji:TextBlock
+                    Grid.Row="3"
+                    VerticalAlignment="Center"
+                    Text="💬 Écris *Hey* dans le chat"
+                    TextWrapping="Wrap"
+                    Visibility="Collapsed" />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

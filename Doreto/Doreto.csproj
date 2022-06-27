@@ -10,6 +10,11 @@
 
   <ItemGroup>
     <None Remove="Assets\discord.png" />
+    <None Remove="Assets\Infinity-0.8s-100px.gif" />
+    <None Remove="Assets\Infinity-1s-100px.gif" />
+    <None Remove="Assets\Infinity-1s-200px.gif" />
+    <None Remove="Assets\Infinity-1s-200px.svg" />
+    <None Remove="Assets\Infinity-1s-64px.gif" />
     <None Remove="Assets\logo%4032px.png" />
   </ItemGroup>
 
@@ -17,6 +22,21 @@
     <Content Include="Assets\discord.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\Infinity-0.8s-100px.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Infinity-1s-100px.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Infinity-1s-200px.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Infinity-1s-200px.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Infinity-1s-64px.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Assets\logo@32px.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -25,11 +45,15 @@
 
   <ItemGroup>
     <PackageReference Include="Emoji.Wpf" Version="0.3.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="NLog" Version="5.0.1" />
     <PackageReference Include="NLog.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+    <PackageReference Include="XamlAnimatedGif" Version="2.0.2" />
     <PackageReference Include="xamlflair.wpf" Version="1.2.13" />
     <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="5.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
@@ -45,6 +69,13 @@
     <ProjectReference Include="..\..\..\SERIOUS\Otto.Theme\Otto.Theme\Otto.Theme.csproj" />
     <ProjectReference Include="..\Doreto.Shared.Wpf\Doreto.Shared.Wpf.csproj" />
     <ProjectReference Include="..\Doreto.Shared\Doreto.Shared.csproj" />
+    <ProjectReference Include="..\RegisterNewCharacterModule\RegisterNewCharacterModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
